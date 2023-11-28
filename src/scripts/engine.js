@@ -85,6 +85,23 @@ async function drawSelectCard(index) {
     state.cardSprites.type.innerText = "Attibute : " + cardData[index].type;
 }
 
+async function setCardsField(cardId) {
+    await removeAllCardsImage();
+
+    let computerCardId = await getRandomCardId();
+
+    state.fieldCards.player.style.display = "block";
+    state.fieldCards.computer.style.display = "block";
+
+    state.fieldCards.player.src = cardData[cardId].img;
+    state.fieldCards.computer.src = cardData[computerCardId].img;
+
+    let duelResults = await checkDuelResults(cardId, computerCardId);
+
+    await updateScore();
+    await drawButton();
+}
+
 async function drawCards(cardNumbers, fieldSide) {
     for (let i = 0; i < cardNumbers; i++) {
         const randomIdCard = await getRandomCardId();
