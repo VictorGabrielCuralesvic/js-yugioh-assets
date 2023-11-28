@@ -128,6 +128,16 @@ async function checkDuelResults(playerCardId, computerCardId) {
     return duelResults;
 }
 
+async function drawButton(text) {
+
+    state.actions.button.innerText = text;
+    state.actions.button.style.display = "block";
+}
+
+async function updateScore() {
+    state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.computerScore}`;
+}
+
 async function removeAllCardsImage() {
     let { computerBOX, player1BOX } = state.playerSides;
     let imgElements = computerBOX.querySelectorAll("img");
